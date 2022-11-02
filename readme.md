@@ -7,4 +7,17 @@ Create a shell script named lessons.sh which processes over a text file (file na
   2. Give the number of lessons per teacher.
   3. Read in a day and give who does not have the first lesson on that day.
 
-  > Solved by MARTINS Alfredo.
+## Instructions
+Run the following command in the linux terminal line:
+
+```
+chmod u+x lessons.sh
+
+./lessons.sh file_schedules_1.data
+
+OR
+
+./lessons.sh file_schedules_2.data
+```
+
+> Made by MARTINS Alfredo.
