@@ -13,11 +13,11 @@ Run the following command in the linux terminal line:
 ```
 chmod u+x lessons.sh
 
-./lessons.sh file_schedules_1.data
+./lessons.sh file_schedules_1.dat
 
 OR
 
-./lessons.sh file_schedules_2.data
+./lessons.sh file_schedules_2.dat
 ```
 
 > Made by MARTINS Alfredo.
