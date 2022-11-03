@@ -169,6 +169,12 @@ isValidOption(){
 whoDoesNotHave(){
     echo ":: WHO DOES NOT HAVE THE FIRST LESSON ON A GIVEN DAY? ::"
     echo " "
+    echo "OPTIONS:"
+        echo "\t:: M - Monday ::"
+        echo "\t:: Tu - Tuesday ::"
+        echo "\t:: W - Wednesday ::"
+        echo "\t:: Th - Thursday ::"
+        echo "\t:: F - Friday ::"
     printf "Please enter the day: "
     read OPTION
 
