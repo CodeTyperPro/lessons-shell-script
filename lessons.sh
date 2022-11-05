@@ -9,21 +9,20 @@ getTeachersWhoHaventLessonOnWednesday(){
     counter=1
     while read line
     do 
-        #echo $line
         res=`echo $line | cut -d ',' -f4 | cut -d ' ' -f 2-`
-        #echo $res
         isThereSomething=`echo $res | grep -e "[0-9]"`
-        #echo $isThereSomething
 
         #Check If there is someone
-        if [[ -z "$isThereSomething" ]]; then
+        if [ -z "$isThereSomething" ]
+        then
             name=`echo $line | cut -d ',' -f1`
             echo "\t$counter - $name"
             counter=`expr $counter + 1`
         fi
     done < $FILE
 
-    if [[ $counter -eq 1 ]]; then
+    if test $counter -eq 1
+    then
         echo "\tNONE"
     fi
 
@@ -39,15 +38,12 @@ getTeachersWhoHaventLessonOnWednesday(){
     fi
 }
 
-# 
-
 getNumberOfLessonsPerTeacher(){
     echo "RESULT:"
 
     counter=1
     while read line
-    do 
-        #echo $line
+    do
         isThereSomething=`echo $line | grep "\<[0-9]\+\([0-9]\+\)*\>" -o`
         numberOfLessons=`echo $isThereSomething | wc -w`
         name=`echo $line | cut -d ',' -f1`
@@ -77,14 +73,10 @@ getWhoDoesNotHaveTheFirstLessonOnAGivenDay(){
     counter=1
     while read line
     do 
-        #echo $line
-        
         res=`echo $line | cut -d ',' -f 2- | grep -o "\$DAY.*," | cut -d ',' -f 1`
-        #echo "$res"
         isThereOne=`echo $res | grep -o "\b1\b"`
-        #echo "$isThereOne"
 
-        if [[ -z "$isThereOne" ]]; then
+        if [ -z $isThereOne ]; then
             name=`echo $line | cut -d ',' -f1`
             printf "\t$counter - $name\n"
             counter=`expr $counter + 1`
@@ -93,7 +85,8 @@ getWhoDoesNotHaveTheFirstLessonOnAGivenDay(){
     done < $FILE
 
 
-    if [[ $counter -eq 1 ]]; then
+    if test $counter -eq 1 
+    then
         echo "\EMPTY"
     fi
 
@@ -155,17 +148,6 @@ numberOfLessons(){
     fi
 }
 
-isValidOption(){
-    PARAM=$1
-    TEXT="M Tu W Th F"
-
-    if [[ "$OPTION" == `echo $TEXT | grep -o "$OPTION"` ]]; then
-        return 1
-    else
-        return 0
-    fi
-}
-
 whoDoesNotHave(){
     echo ":: WHO DOES NOT HAVE THE FIRST LESSON ON A GIVEN DAY? ::"
     echo " "
@@ -177,22 +159,21 @@ whoDoesNotHave(){
         echo "\t:: F - Friday ::"
     printf "Please enter the day: "
     read OPTION
-
-    isValidOption $OPTION
-    res=$?
-    
-    if test $res -eq 1
-    then
-        getWhoDoesNotHaveTheFirstLessonOnAGivenDay $OPTION
-    else 
-        echo ""
-        printfInvalidOperation
-        echo "Try again, please!"
-        echo ""
-        sleep 1
-        whoDoesNotHave
-    fi
-
+    echo ""
+    case "$OPTION" in 
+        "M") getWhoDoesNotHaveTheFirstLessonOnAGivenDay $OPTION ;;
+        "Tu") getWhoDoesNotHaveTheFirstLessonOnAGivenDay $OPTION ;;
+        "W") getWhoDoesNotHaveTheFirstLessonOnAGivenDay $OPTION ;;
+        "Th") getWhoDoesNotHaveTheFirstLessonOnAGivenDay $OPTION ;;
+        "F") getWhoDoesNotHaveTheFirstLessonOnAGivenDay $OPTION ;;
+        *) 
+            echo ""
+            printfInvalidOperation
+            echo "Try again, please!"
+            echo ""
+            sleep 1
+            whoDoesNotHave
+    esac
 }
 
 dismiss(){
@@ -229,10 +210,11 @@ echo "$FILE"
 # The script execution starts here ...
 #File if the file exist and if any parameter was given
 
-if [[ $# -eq 0 ]]
+if test $# -eq 0
 then
     echo "Wait, you forgot to pass the parameter via terminal line. Please, do It next time. :)"
-elif [[ -f "$FILE" ]]; then
+elif test -f $FILE
+then
     printHeader
 else 
     echo "Sorry, the file was not found in the system. => $FILE!"
