@@ -179,7 +179,7 @@ whoDoesNotHave(){
 dismiss(){
     echo ""
     echo "THANK YOU FOR USING MY SCRIPT :) $(date)"
-    echo "Copyright© ComSys ELTE 2022, Alfredo Martins (Student) & Dr. Bakonyi Viktória (Teacher)"
+    echo "Copyright© ComSys ELTE 2022, Alfredo Martins (Student) & Dr. Bakonyi Viktória (Professor)"
     exit 0
 }
 
